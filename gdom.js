@@ -1,5 +1,5 @@
-class gDom {
-  constructor(selector) {
+var $g = function(selector) {
+  function gDom(selector) {
     if (typeof(selector) == "object") {
       this.elements = [selector];
     } else {
@@ -7,28 +7,28 @@ class gDom {
     }
   }
 
-  addClass(cl) {
+  gDom.prototype.addClass = function(cl) {
     Array.prototype.forEach.call(this.elements, function(el) {
       el.classList.add(cl);
     });
     return true;
   }
 
-  removeClass(cl) {
+  gDom.prototype.removeClass = function(cl) {
     Array.prototype.forEach.call(this.elements, function(el) {
       el.classList.remove(cl);
     });
     return true;
   }
 
-  toggleClass(cl) {
+  gDom.prototype.toggleClass = function(cl) {
     Array.prototype.forEach.call(this.elements, function(el) {
       el.classList.toggle(cl);
     });
     return true;
   }
 
-  hasClass(cl) {
+  gDom.prototype.hasClass = function(cl) {
     var has = false;
     Array.prototype.forEach.call(this.elements, function(el) {
       if (el.classList.contains(cl)) has = true;
@@ -36,25 +36,25 @@ class gDom {
     return has;
   }
 
-  attr(attr) {
+  gDom.prototype.attr = function(attr) {
     return this.elements[0].getAttribute(attr);
   }
 
-  on(ev, fn) {
+  gDom.prototype.on = function(ev, fn) {
     Array.prototype.forEach.call(this.elements, function(el) {
       el.addEventListener(ev, fn, false);
     });
     return true;
   }
 
-  offset() {
+  gDom.prototype.offset = function() {
     return {
       top: this.elements[0].offsetTop, 
       left: this.elements[0].offsetLeft
     }
   }
 
-  scrollTop(scrollTo) {
+  gDom.prototype.scrollTop = function(scrollTo) {
     if (scrollTo) {
       // FIXME: Add code to scroll to a specific position
     } else {
@@ -63,7 +63,7 @@ class gDom {
   }
 
   // FIXME: Now is just supporting classes, add id support too.
-  parent(cl) {
+  gDom.prototype.parent = function(cl) {
     if (!cl) {
       return this.elements[0].parentNode;
     } else {
@@ -79,10 +79,9 @@ class gDom {
       }
     }
   }
-}
 
-var $g = function(selector) {
+
+
+
   return new gDom(selector);
 }
-
-export default $g;
