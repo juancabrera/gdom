@@ -66,6 +66,10 @@ var $g = function(selector) {
     Array.prototype.forEach.call(this.elements, callback);
   }
 
+  gDom.prototype.find = function(selector) {
+    return new gDom(this.elements[0].querySelectorAll(selector));
+  }
+
   // FIXME: Now is just supporting classes, add id support too.
   gDom.prototype.parent = function(cl) {
     if (!cl) {
@@ -83,9 +87,6 @@ var $g = function(selector) {
       }
     }
   }
-
-
-
 
   return new gDom(selector);
 }
