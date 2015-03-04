@@ -76,6 +76,10 @@ class gDom {
     Array.prototype.forEach.call(this.elements, callback);
   }
 
+  find(selector) {
+    return new gDom(this.elements[0].querySelectorAll(selector));
+  }
+  
   // FIXME: Now is just supporting classes, add id support too.
   parent(cl) {
     if (!cl) {
