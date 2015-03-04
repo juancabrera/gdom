@@ -62,6 +62,10 @@ var $g = function(selector) {
     }
   }
 
+  gDom.prototype.each = function(callback) {
+    Array.prototype.forEach.call(this.elements, callback);
+  }
+
   // FIXME: Now is just supporting classes, add id support too.
   gDom.prototype.parent = function(cl) {
     if (!cl) {

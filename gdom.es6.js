@@ -1,3 +1,6 @@
+// gDom.js
+// Custom ES6 module for handling the DOM
+
 class gDom {
   constructor(selector) {
     if (typeof(selector) == "object") {
@@ -36,6 +39,13 @@ class gDom {
     return has;
   }
 
+  css(obj) {
+    Array.prototype.forEach.call(this.elements, function(el) {
+      for (let k in obj) el.style[k] = obj[k];
+    });
+    return true;
+  }
+
   attr(attr) {
     return this.elements[0].getAttribute(attr);
   }
@@ -56,10 +66,14 @@ class gDom {
 
   scrollTop(scrollTo) {
     if (scrollTo) {
-      // FIXME: Add code to scroll to a specific position
+      // Add code to scroll to a specific position
     } else {
       return this.elements[0].scrollTop;
     }
+  }
+
+  each(callback) {
+    Array.prototype.forEach.call(this.elements, callback);
   }
 
   // FIXME: Now is just supporting classes, add id support too.
